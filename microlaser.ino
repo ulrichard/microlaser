@@ -24,11 +24,11 @@ const uint8_t motorYPinPos =  6;   // pin 10 on L293D
 const uint8_t motorYPinNeg =  9;   // pin 15 on L293D
 const uint8_t steps = 50;
 const uint8_t pause = 0;
-const float scaleX = 0.5;
-const float scaleY = 1;
+const float scaleX = 0.35;
+const float scaleY = 0.5;
 
-const int8_t offsetX = 0;
-const int8_t offsetY = 120; // to compensate the missing 4th PWM of the AtMega8
+const float offsetX = 0;
+const float offsetY = 0.5; // to compensate the missing 4th PWM of the AtMega8
 const float scaleXPos = scaleX;
 const float scaleXNeg = scaleX;
 const float scaleYPos = scaleY;
@@ -52,11 +52,11 @@ float angle = 0;
 
 void loop()
 {    
-    const float x = sin(angle);
-    float y = cos(angle);
+    const float x = sin(angle) + offsetX;
+    const float y = cos(angle) + offsetY;
 
-	if(angle < 45.0 || angle > 370)
-		y = 0.75 - (y - 0.75);
+//	if(angle < 45.0 || angle > 370)
+//		y = 0.75 - (y - 0.75);
     
     if(x >= 0)
     {
